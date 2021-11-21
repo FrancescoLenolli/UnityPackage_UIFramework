@@ -1,34 +1,35 @@
 ﻿using System.Collections;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class DialogueSystem : Singleton<DialogueSystem>
 {
-    public DialogueTree testDialogueTree;
+    public Dialogue testDialogue;
 
     [SerializeField]
     private GameObject dialogueCanvas = null;
     [SerializeField]
-    private TextMeshProUGUI dialogueText = null;
+    private TextMeshProUGUI dialogueSection = null;
+    [SerializeField]
+    private TextMeshProUGUI characterName = null;
     [SerializeField]
     private float dialogueDelay = 1f;
 
-    private DialogueTree currentDialogueTree;
+    private Dialogue currentDialogue;
     private bool canAutoplay = false;
 
     private void Start()
     {
-        SetDialogueTree(testDialogueTree);
+        SetDialogue(testDialogue);
     }
 
-    public void SetDialogueTree(DialogueTree newDialogueTree)
+    public void SetDialogue(Dialogue newDialogue)
     {
-        currentDialogueTree = newDialogueTree;
+        currentDialogue = newDialogue;
         StartDialogue();
     }
 
-    public void AutoPlayDialogues()
+    public void AutoPlayDialogue()
     {
         canAutoplay = !canAutoplay;
     }
@@ -47,19 +48,20 @@ public class DialogueSystem : Singleton<DialogueSystem>
     private IEnumerator ShowDialogueRoutine()
     {
         int index = 0;
-        int lastIndex = currentDialogueTree.dialogues.Count;
+        int lastIndex = currentDialogue.sections.Count;
         bool canEndDialogue = false;
 
         while (!canEndDialogue)
         {
-            bool areDialoguesEnded = index >= lastIndex;
+            bool isDialogueEnded = index >= lastIndex;
 
-            if (!areDialoguesEnded)
+            if (!isDialogueEnded)
             {
-                dialogueText.text = dialogueText.text.Remove(0);
-                foreach (char character in currentDialogueTree.dialogues[index].text)
+                characterName.text = currentDialogue.sections[index].characterName;
+                dialogueSection.text = dialogueSection.text.Remove(0);
+                foreach (char character in currentDialogue.sections[index].text)
                 {
-                    dialogueText.text += character;
+                    dialogueSection.text += character;
                     yield return new WaitForSeconds(0.05f);
                 }
                 ++index;
@@ -70,12 +72,12 @@ public class DialogueSystem : Singleton<DialogueSystem>
                 while (!Input.GetKeyDown(KeyCode.Space) && !canAutoplay)
                 { yield return null; }
             }
-            else if(!areDialoguesEnded)
+            else if (!isDialogueEnded)
             {
                 yield return new WaitForSeconds(dialogueDelay);
             }
 
-            if(Input.GetKeyDown(KeyCode.Space) && areDialoguesEnded)
+            if (Input.GetKeyDown(KeyCode.Space) && isDialogueEnded)
             {
                 canEndDialogue = true;
                 EndDialogue();

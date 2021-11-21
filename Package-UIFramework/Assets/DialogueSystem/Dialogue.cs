@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Custom/DialogueSystem/DialogueTree", fileName = "NewDialogueTree")]
-public class DialogueTree : ScriptableObject
+[CreateAssetMenu(menuName = "Custom/DialogueSystem/Dialogue", fileName = "NewDialogue")]
+public class Dialogue : ScriptableObject
 {
     public enum CharacterStatus { Normal, Angry }
 
     [System.Serializable]
-    public struct Dialogue
+    public struct DialogueSection
     {
         public string characterName;
         public CharacterStatus status;
@@ -15,5 +15,5 @@ public class DialogueTree : ScriptableObject
         public string text;
     }
 
-    public List<Dialogue> dialogues = new List<Dialogue>();
+    public List<DialogueSection> sections = new List<DialogueSection>();
 }
