@@ -2,29 +2,52 @@
 using TMPro;
 using UnityEngine;
 
-public class DialogueSystem : Singleton<DialogueSystem>
+public class DialogueSystem : MonoBehaviour
 {
-    public Dialogue testDialogue;
+    [SerializeField] private bool debug = false;
+    [SerializeField] private Dialogue debugDialogue = null;
+    [Space(10)]
+    [SerializeField] private GameObject dialogueCanvas = null;
+    [Tooltip("Text for the dialogue texts.")]
+    [SerializeField] private TextMeshProUGUI dialogueSection = null;
+    [Tooltip("Text for the current character's name.")]
+    [SerializeField] private TextMeshProUGUI characterName = null;
+    [Space(10)]
+    [Tooltip("Delay between text's single characters being displayed.")]
+    [SerializeField] private float charactersDelay = 0.07f;
+    [Tooltip("Can the dialogue play itself with no player input required?")]
+    [SerializeField] private bool canAutoplay = false;
+    [Tooltip("Autoplay's delay between texts.")]
+    [SerializeField] private float dialogueDelay = 1f;
 
-    [SerializeField]
-    private GameObject dialogueCanvas = null;
-    [SerializeField]
-    private TextMeshProUGUI dialogueSection = null;
-    [SerializeField]
-    private TextMeshProUGUI characterName = null;
-    [SerializeField]
-    private float dialogueDelay = 1f;
-
+    private static DialogueSystem Instance;
     private Dialogue currentDialogue;
-    private bool canAutoplay = false;
+    private bool isCurrentDialogueEnded = true;
+
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject.transform.root);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
-        SetDialogue(testDialogue);
+        if(debug)
+        SetDialogue(debugDialogue);
     }
 
     public void SetDialogue(Dialogue newDialogue)
     {
+        if (!isCurrentDialogueEnded)
+            return;
+
         currentDialogue = newDialogue;
         StartDialogue();
     }
@@ -47,6 +70,7 @@ public class DialogueSystem : Singleton<DialogueSystem>
 
     private IEnumerator ShowDialogueRoutine()
     {
+        isCurrentDialogueEnded = false;
         int index = 0;
         int lastIndex = currentDialogue.sections.Count;
         bool canEndDialogue = false;
@@ -61,8 +85,12 @@ public class DialogueSystem : Singleton<DialogueSystem>
                 dialogueSection.text = dialogueSection.text.Remove(0);
                 foreach (char character in currentDialogue.sections[index].text)
                 {
+                    if(Input.GetKeyDown(KeyCode.R))
+                    {
+                        Debug.Log("De'");
+                    }
                     dialogueSection.text += character;
-                    yield return new WaitForSeconds(0.05f);
+                    yield return new WaitForSeconds(charactersDelay);
                 }
                 ++index;
             }
@@ -86,6 +114,7 @@ public class DialogueSystem : Singleton<DialogueSystem>
             yield return null;
         }
 
+        isCurrentDialogueEnded = true;
         yield return null;
     }
 }
