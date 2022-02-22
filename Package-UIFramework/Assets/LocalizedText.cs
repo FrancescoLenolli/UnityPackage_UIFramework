@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CSVUtilities;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class LocalizedText : MonoBehaviour
 {
     [SerializeField] private string key = "";
     private TextMeshProUGUI label;
-    private List<string> localizedTexts = new List<string>();
 
-    private void Awake()
+    private void Start()
     {
         label = GetComponent<TextMeshProUGUI>();
-        localizedTexts = FindObjectOfType<LocalizationManager>().GetValue(key);
-        EventManager.StartListening("ChangeLanguage", ChangeLanguage);
+        LocalizeText(key);
     }
 
-    private void ChangeLanguage(object value)
+    private void LocalizeText(string key)
     {
-        LocalizationManager.Language newLanguage = (LocalizationManager.Language) value;
-        int index = (int) newLanguage;
-        label.text = localizedTexts[index];
+        var value = LocalizationSystem.GetLocalizedValue(key);
+        label.text = value;
     }
 }

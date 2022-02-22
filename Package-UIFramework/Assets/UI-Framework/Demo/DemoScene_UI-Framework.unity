@@ -816,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a9243af5c4d9943b16492d02015ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: Label_Welcome
+  key: welcome
 --- !u!1001 &1791217765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a9243af5c4d9943b16492d02015ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: Button_Start
+  key: working_question
 --- !u!1 &2033410801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizationData: {fileID: 4900000, guid: 69522a0b96bee6746894c1d73afa6c75, type: 3}
+  language: 0
 --- !u!4 &2124508772
 Transform:
   m_ObjectHideFlags: 0
