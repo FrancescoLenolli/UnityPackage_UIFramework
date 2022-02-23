@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -58,4 +59,51 @@ using UnityEngine;
 
             return dictionary;
         }
+
+#if  UNITY_EDITOR
+        public void Add(string key, string value)
+        {
+            string append = $"\n{key},{value},";
+            File.AppendAllText("Assets/Resources/localization.csv", append);
+            
+            UnityEditor.AssetDatabase.Refresh();
+        }
+
+        public void Remove(string key)
+        {
+            string[] lines = csvFile.text.Split(lineSeparator);
+            string[] keys = new string[lines.Length];
+
+            for (int i = 0; i < lines.Length; ++i)
+            {
+                string line = lines[i];
+                keys[i] = line.Split(fieldSeparator, StringSplitOptions.None)[0];
+            }
+
+            int index = -1;
+            for (int i = 0; i < keys.Length; ++i)
+            {
+                if (keys[i].Contains(key))
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index > -1)
+            {
+                string[] newLines;
+                newLines = lines.Where(x => x != lines[index]).ToArray();
+
+                string replaced = string.Join(lineSeparator.ToString(), newLines);
+                File.WriteAllText("Assets/Resources/localization.csv", replaced);
+            }
+        }
+
+        public void Edit(string key, string newValue)
+        {
+            Remove(key);
+            Add(key, newValue);
+        }
+#endif
     }

@@ -10,8 +10,9 @@ public class LocalizationSystem
         Spanish
     }
 
-    public static Language language = Language.French;
     public static bool isInit;
+    public static CSVLoader csvLoader;
+    public static Language language = Language.French;
 
     private static Dictionary<string, string> localizedENG;
     private static Dictionary<string, string> localizedFR;
@@ -20,15 +21,55 @@ public class LocalizationSystem
 
     public static void Init()
     {
-        var csvLoader = new CSVLoader();
+        csvLoader = new CSVLoader();
         csvLoader.LoadCSV();
 
-        localizedENG = csvLoader.GetDictionaryValues("eng");
-        localizedFR = csvLoader.GetDictionaryValues("fr");
-        localizedITA = csvLoader.GetDictionaryValues("ita");
-        localizedESP = csvLoader.GetDictionaryValues("esp");
+        UpdateDictionaries();
 
         isInit = true;
+    }
+
+    public static void Add(string key, string value)
+    {
+        if (value.Contains("\""))
+            value.Replace('"', '\"');
+
+        if (csvLoader == null)
+            csvLoader = new CSVLoader();
+
+        csvLoader.LoadCSV();
+        csvLoader.Add(key, value);
+        csvLoader.LoadCSV();
+
+        UpdateDictionaries();
+    }
+
+    public static void Replace(string key, string value)
+    {
+        
+        if (value.Contains("\""))
+            value.Replace('"', '\"');
+
+        if (csvLoader == null)
+            csvLoader = new CSVLoader();
+
+        csvLoader.LoadCSV();
+        csvLoader.Edit(key, value);
+        csvLoader.LoadCSV();
+
+        UpdateDictionaries();
+    }
+
+    public static void Remove(string key)
+    {
+        if (csvLoader == null)
+            csvLoader = new CSVLoader();
+
+        csvLoader.LoadCSV();
+        csvLoader.Remove(key);
+        csvLoader.LoadCSV();
+
+        UpdateDictionaries();
     }
 
     public static string GetLocalizedValue(string key)
@@ -56,5 +97,19 @@ public class LocalizationSystem
         }
 
         return value;
+    }
+
+    public static Dictionary<string, string> GetDictionaryForEditor()
+    {
+        if (!isInit) Init();
+        return localizedENG;
+    }
+
+    private static void UpdateDictionaries()
+    {
+        localizedENG = csvLoader.GetDictionaryValues("eng");
+        localizedFR = csvLoader.GetDictionaryValues("fr");
+        localizedITA = csvLoader.GetDictionaryValues("ita");
+        localizedESP = csvLoader.GetDictionaryValues("esp");
     }
 }

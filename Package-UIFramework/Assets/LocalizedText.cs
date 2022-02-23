@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class LocalizedText : MonoBehaviour
 {
-    [SerializeField] private string key = "";
+    [SerializeField] private LocalizedString localizedString;
     private TextMeshProUGUI label;
 
     private void Start()
     {
         label = GetComponent<TextMeshProUGUI>();
-        LocalizeText(key);
+        LocalizeText(localizedString.Value);
     }
 
     private void LocalizeText(string key)
