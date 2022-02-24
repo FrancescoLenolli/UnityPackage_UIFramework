@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+namespace Localization
+{
     public class CSVLoader
     {
         private TextAsset csvFile;
         private char lineSeparator = '\n';
         private char surround = '"';
-        private string[] fieldSeparator = {","};
+        private string[] fieldSeparator = { "," };
 
         public void LoadCSV()
         {
@@ -50,7 +52,7 @@ using UnityEngine;
                 if (fields.Length > attributeIndex)
                 {
                     string key = fields[0];
-                    if(dictionary.ContainsKey(key)) continue;
+                    if (dictionary.ContainsKey(key)) continue;
 
                     string value = fields[attributeIndex];
                     dictionary.Add(key, value);
@@ -64,8 +66,8 @@ using UnityEngine;
         public void Add(string key, string value)
         {
             string append = $"\n{key},{value},";
-            File.AppendAllText("Assets/Resources/localization.csv", append);
-            
+            File.AppendAllText("Assets/LocalizationSystem/Resources/localization.csv", append);
+
             UnityEditor.AssetDatabase.Refresh();
         }
 
@@ -96,7 +98,7 @@ using UnityEngine;
                 newLines = lines.Where(x => x != lines[index]).ToArray();
 
                 string replaced = string.Join(lineSeparator.ToString(), newLines);
-                File.WriteAllText("Assets/Resources/localization.csv", replaced);
+                File.WriteAllText("Assets/LocalizationSystem/Resources/localization.csv", replaced);
             }
         }
 
@@ -107,3 +109,4 @@ using UnityEngine;
         }
 #endif
     }
+}

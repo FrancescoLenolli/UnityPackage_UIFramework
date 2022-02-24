@@ -779,7 +779,7 @@ PrefabInstance:
     - target: {fileID: 4789887187658649798, guid: a929c93db4e4a9841a87ea81ee1fd1d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79.09
+      value: -79.09009
       objectReference: {fileID: 0}
     - target: {fileID: 4789887187658649798, guid: a929c93db4e4a9841a87ea81ee1fd1d0,
         type: 3}
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizedString:
-    key: 
+    key: welcome
 --- !u!1 &2033410801
 GameObject:
   m_ObjectHideFlags: 0
