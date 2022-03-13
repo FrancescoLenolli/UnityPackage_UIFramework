@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace UIFramework
+namespace UIFramework.Components
 {
     /// <summary>
     /// Base StatusBar values.

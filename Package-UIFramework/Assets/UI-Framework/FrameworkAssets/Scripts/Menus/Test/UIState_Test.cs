@@ -1,12 +1,12 @@
 ﻿using UIFramework.StateMachine;
 
-public class UIState_MainMenu : UIState
+public class UIState_Test : UIState
 {
-    protected UIRoot_MainMenu root;
+    protected UIRoot_Test root;
     public override void PrepareState(UIStateMachine owner)
     {
         base.PrepareState(owner);
         if (!root)
-            root = (UIRoot_MainMenu)this.owner.Root;
+            root = (UIRoot_Test)this.owner.Root;
     }
 }

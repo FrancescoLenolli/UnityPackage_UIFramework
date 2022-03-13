@@ -2,14 +2,14 @@
 using UIFramework.StateMachine;
 using UnityEngine;
 
-public class UIState_MainMenu_Main : UIState_MainMenu
+public class UIState_Test_Main : UIState_Test
 {
-    private UIView_MainMenu_Main view;
+    private UIView_Test_Main view;
 
     public override void PrepareState(UIStateMachine owner)
     {
         base.PrepareState(owner);
-        view = root.ViewMain;
+        view = root.mainView;
         view.OnStartGame += StartGame;
         view.OnOpenOptions += OpenOptions;
         view.OnQuitGame += QuitGame;

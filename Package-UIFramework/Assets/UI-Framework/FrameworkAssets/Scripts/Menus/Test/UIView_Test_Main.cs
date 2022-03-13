@@ -1,7 +1,7 @@
 ﻿using System;
 using UIFramework.StateMachine;
 
-public class UIView_MainMenu_Main : UIView
+public class UIView_Test_Main : UIView
 {
     private Action onStartGame;
     private Action onOpenOptions;
