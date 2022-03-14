@@ -1,4 +1,5 @@
-﻿using UIFramework.StateMachine;
+﻿using UIFramework.Components;
+using UIFramework.StateMachine;
 using UnityEngine;
 
 namespace UIFramework
@@ -6,8 +7,8 @@ namespace UIFramework
     public class UIManager : Singleton<UIManager>
     {
         [Tooltip("Prefab for the game's Options Menu")]
-        [SerializeField]
-        private UIStateMachine optionsMenuPrefab = null;
+        [SerializeField] private UIStateMachine optionsMenuPrefab = null;
+        [SerializeField] private PopUpObject popUpPrefab = null;
 
         private UIStateMachine optionsMenu = null;
         private bool optionsOpen = false;
@@ -22,11 +23,16 @@ namespace UIFramework
             }
         }
 
+        public PopUpObject GetPopUp()
+        {
+            return popUpPrefab;
+        }
+
         public void OpenOptions()
         {
             if (!optionsOpen)
             {
-                if (!optionsMenu)
+                if (!optionsMenu)                                               
                 {
                     optionsMenu = Instantiate(optionsMenuPrefab);
                     optionsMenu?.FirstStart();

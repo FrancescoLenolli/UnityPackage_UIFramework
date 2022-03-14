@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1124650108484937224}
   - component: {fileID: 1124650108484937223}
   m_Layer: 0
-  m_Name: MainMenu
+  m_Name: UI_TestMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a71d03d72082041a36a0c7e9668193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuMain: {fileID: 1124650109892269859}
+  mainView: {fileID: 1040981354}
 --- !u!114 &1124650108484937223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +73,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9146281e0f41bb42b883f258977f1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1124650109892269859
+--- !u!225 &1040981355
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402869271107475608}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &1040981354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8402869271107475608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3249860702629848ac6fb48e9c9493b, type: 3}
+  m_Script: {fileID: 11500000, guid: fc2dc2a0259a0cb47acf715ec60c5288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1124650108292939294
@@ -216,7 +228,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1124650109892269859}
+      objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -649,7 +661,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1124650109892269859}
+      objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -812,7 +824,7 @@ PrefabInstance:
     - target: {fileID: 8865180028268416952, guid: b686f0d7a1d393e4889c0b52e63cc547,
         type: 3}
       propertyPath: m_Name
-      value: UIView_MainMenu_Main
+      value: UIView_Test_Main
       objectReference: {fileID: 0}
     - target: {fileID: 8865180028268416953, guid: b686f0d7a1d393e4889c0b52e63cc547,
         type: 3}
@@ -1064,7 +1076,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1124650109892269859}
+      objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
