@@ -12,7 +12,7 @@ namespace UIFramework.Components
         private PopUpObject popUpPrefab;
         private PopUpObject popUpObject;
 
-        private void Start()
+        private void Awake()
         {
             popUpPrefab = UIManager.Instance.GetPopUp();
         }

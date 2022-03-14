@@ -46,3 +46,5 @@ MonoBehaviour:
   dontDestroyable: 1
   optionsMenuPrefab: {fileID: 901183880385142325, guid: 731d16867e6afbb479b479e4f1256df2,
     type: 3}
+  popUpPrefab: {fileID: 3276025147832167217, guid: 82e44c7eee8538e49be7d9238b0eacdb,
+    type: 3}

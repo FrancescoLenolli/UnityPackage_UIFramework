@@ -10,7 +10,16 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            //Debug.Assert(instance != null);
+            /*
+             * Failsafe in case something needs a reference to instance
+             * before it's initialised in the Awake method below.
+             */
+            if (!instance)
+                instance = FindObjectOfType<T>();
+            if (!instance)
+                Debug.LogWarning($"No class of type {typeof(T)} found in the current Scene." +
+                    $"This will lead to errors and to the app not running correctly.\n");
+
             return instance;
         }
     }

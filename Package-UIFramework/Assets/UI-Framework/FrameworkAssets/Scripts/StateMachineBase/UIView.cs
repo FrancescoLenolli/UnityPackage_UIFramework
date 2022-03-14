@@ -10,23 +10,16 @@ namespace UIFramework.StateMachine
     public class UIView : MonoBehaviour
     {
         protected CanvasGroup canvasGroup;
+        private bool showView = true;
 
-        /// <summary>
-        /// Method called to show view.
-        /// </summary>
-        [ContextMenu("Show View")]
         public virtual void ShowView()
         {
-            Utils.ShowObject(GetCanvasGroup(), true);
+            ChangeView(true);
         }
 
-        /// <summary>
-        /// Method called to hide view.
-        /// </summary>
-        [ContextMenu("Hide View")]
         public virtual void HideView()
         {
-            Utils.ShowObject(GetCanvasGroup(), false);
+            ChangeView(false);
         }
 
         protected CanvasGroup GetCanvasGroup()
@@ -35,6 +28,18 @@ namespace UIFramework.StateMachine
                 canvasGroup = GetComponent<CanvasGroup>();
 
             return canvasGroup;
+        }
+
+        private void ChangeView(bool isVisible)
+        {
+            Utils.ShowObject(GetCanvasGroup(), isVisible);
+        }
+
+        [ContextMenu("Show|Hide View")]
+        private void ChangeView()
+        {
+            showView = !showView;
+            ChangeView(showView);
         }
     }
 }
