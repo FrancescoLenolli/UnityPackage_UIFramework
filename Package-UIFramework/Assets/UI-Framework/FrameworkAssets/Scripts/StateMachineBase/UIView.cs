@@ -32,7 +32,7 @@ namespace UIFramework.StateMachine
 
         private void ChangeView(bool isVisible)
         {
-            Utils.ShowObject(GetCanvasGroup(), isVisible);
+            UIUtils.ShowObject(GetCanvasGroup(), isVisible);
         }
 
         [ContextMenu("Show|Hide View")]

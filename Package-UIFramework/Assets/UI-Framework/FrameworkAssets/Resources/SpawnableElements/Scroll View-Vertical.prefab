@@ -259,6 +259,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7065128309799701617}
   - component: {fileID: 7065128309799701622}
+  - component: {fileID: 4307063552766950188}
+  - component: {fileID: 2943604002609701655}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -310,6 +312,30 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!225 &4307063552766950188
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7065128309799701616}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2943604002609701655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7065128309799701616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998fe4cdbd356064f8e7a027f2f357e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7065128310279545401
 GameObject:
   m_ObjectHideFlags: 0

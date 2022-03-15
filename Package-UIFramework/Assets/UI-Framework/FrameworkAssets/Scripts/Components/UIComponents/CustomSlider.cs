@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UIFramework.Components
 {
-    public class CustomSlider : MonoBehaviour
+    public class CustomSlider : UIComponent
     {
         private Slider slider;
 
@@ -12,35 +12,22 @@ namespace UIFramework.Components
             slider = GetComponent<Slider>();
         }
 
-        /// <summary>
-        /// Set the Slider's starting values.
-        /// </summary>
-        /// <param name="minValue"></param>
-        /// <param name="maxValue"></param>
-        /// <param name="startingValue"></param>
-        /// <param name="wholeNumbers"> Set to TRUE to have the Slider value accepts whole numbers only. </param>
         public void Init(float minValue, float maxValue, float startingValue, bool wholeNumbers = false)
         {
+            if(!slider)
+            slider = GetComponent<Slider>();
+
             slider.minValue = minValue;
             slider.maxValue = maxValue;
             slider.value = startingValue;
-
             slider.wholeNumbers = wholeNumbers;
         }
 
-        /// <summary>
-        /// Set new Slider value.
-        /// </summary>
-        /// <param name="value"></param>
         public void SetValue(float value)
         {
             slider.value = value;
         }
 
-        /// <summary>
-        /// Get Slider's current value.
-        /// </summary>
-        /// <returns></returns>
         public float GetValue()
         {
             return slider.value;
@@ -49,6 +36,11 @@ namespace UIFramework.Components
         public void ResetValue()
         {
             slider.value = slider.maxValue;
+        }
+
+        public void EnableSlider(bool isInteractable)
+        {
+            slider.interactable = isInteractable;
         }
     }
 }

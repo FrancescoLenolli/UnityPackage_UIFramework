@@ -25,7 +25,7 @@ namespace UIFramework.Components
     /// <summary>
     /// Display a given stat. Can be used to display health, stamina, etc...
     /// </summary>
-    public class StatusBar : MonoBehaviour
+    public class StatusBar : UIComponent
     {
         [SerializeField]
         private CustomSlider slider = null;

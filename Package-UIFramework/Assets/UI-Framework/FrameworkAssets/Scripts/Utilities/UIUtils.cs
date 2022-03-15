@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UIFramework.Utilities
 {
-    public static class Utils
+    public static class UIUtils
     {
         public static void ShowObject(CanvasGroup canvasGroup, bool isVisible)
         {
