@@ -1,54 +1,59 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UIFramework.Components
 {
     /// <summary>
     /// Base StatusBar values.
     /// </summary>
-    public struct StatusValues
+    public struct StatusInfo
     {
-        public string ownerName;
+        public string valueName;
         public float minValue;
         public float maxValue;
         public float currentValue;
+        public UnityAction<float> action;
 
-        public StatusValues(string ownerName, float minValue, float maxValue, float currentValue)
+        public StatusInfo(string valueName, float minValue, float maxValue,
+            float currentValue, UnityAction<float> action = null)
         {
-            this.ownerName = ownerName;
+            this.valueName = valueName;
             this.minValue = minValue;
             this.maxValue = maxValue;
             this.currentValue = currentValue;
+            this.action = action;
         }
     }
 
     /// <summary>
-    /// Display a given stat. Can be used to display health, stamina, etc...
+    /// Display a given stat like health, stamina, etc...
     /// </summary>
     public class StatusBar : UIComponent
     {
         [SerializeField]
         private CustomSlider slider = null;
         [SerializeField]
-        private TextMeshProUGUI characterNameDisplay = null;
+        private TextMeshProUGUI valueNameLabel = null;
 
-        public CustomSlider Slider { get => slider; }
-
-        public void Init(StatusValues statusValues)
+        public void Init(StatusInfo statusValues)
         {
-            characterNameDisplay.text = statusValues.ownerName;
-            slider.Init(statusValues.minValue, statusValues.maxValue, statusValues.currentValue, false);
+            valueNameLabel.text = statusValues.valueName;
+            slider.Init(statusValues.minValue, statusValues.maxValue,
+                statusValues.currentValue, false, statusValues.action);
         }
 
-        public void SetSliderValue(float value)
+        public void SetValue(float value)
         {
             slider.SetValue(value);
         }
 
-        /// <summary>
-        /// Reset StatusBar to starting value.
-        /// </summary>
-        public void ResetSliderValue()
+        public float GetValue()
+        {
+            return slider.GetValue();
+        }
+
+        public void ResetValue()
         {
             slider.ResetValue();
         }
