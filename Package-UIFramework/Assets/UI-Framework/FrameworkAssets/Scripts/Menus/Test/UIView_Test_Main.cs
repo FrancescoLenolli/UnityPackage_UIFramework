@@ -1,28 +1,31 @@
 ﻿using System;
 using UIFramework.StateMachine;
 
-public class UIView_Test_Main : UIView
+namespace UIFramework.Test
 {
-    private Action onStartGame;
-    private Action onOpenOptions;
-    private Action onQuitGame;
-
-    public Action OnStartGame { get => onStartGame; set => onStartGame = value; }
-    public Action OnOpenOptions { get => onOpenOptions; set => onOpenOptions = value; }
-    public Action OnQuitGame { get => onQuitGame; set => onQuitGame = value; }
-
-    public void StartGame()
+    public class UIView_Test_Main : UIView
     {
-        onStartGame?.Invoke();
-    }
+        private Action onStartGame;
+        private Action onOpenOptions;
+        private Action onQuitGame;
 
-    public void OpenOptions()
-    {
-        onOpenOptions?.Invoke();
-    }
+        public Action OnStartGame { get => onStartGame; set => onStartGame = value; }
+        public Action OnOpenOptions { get => onOpenOptions; set => onOpenOptions = value; }
+        public Action OnQuitGame { get => onQuitGame; set => onQuitGame = value; }
 
-    public void QuitGame()
-    {
-        onQuitGame?.Invoke();
+        public void StartGame()
+        {
+            onStartGame?.Invoke();
+        }
+
+        public void OpenOptions()
+        {
+            onOpenOptions?.Invoke();
+        }
+
+        public void QuitGame()
+        {
+            onQuitGame?.Invoke();
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace UIFramework.Components
     /// Add this component to a Button if you want to call a method continuously
     /// while the Button is being held down.
     /// </summary>
-    public class ButtonHeld : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class ButtonHeld : CustomButton, IPointerDownHandler, IPointerUpHandler
     {
         //TODO: Check if Unity already provides this feature.
         [SerializeField] private UnityEvent onButtonHeld = null;

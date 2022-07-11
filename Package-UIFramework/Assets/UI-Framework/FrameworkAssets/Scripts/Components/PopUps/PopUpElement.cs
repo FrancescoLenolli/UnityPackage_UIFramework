@@ -14,14 +14,14 @@ namespace UIFramework.Components
 
         private void Awake()
         {
-            popUpPrefab = UIManager.Instance.GetPopUp();
+            popUpPrefab = OptionsMenuManager.Instance.GetPopUp();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (!popUpPrefab)
             {
-                Debug.LogWarning($"PopUp prefab not found in {UIManager.Instance.gameObject.name}." +
+                Debug.LogWarning($"PopUp prefab not found in {OptionsMenuManager.Instance.gameObject.name}." +
                     $"Make sure you assign one in the inspector.");
                 return;
             }

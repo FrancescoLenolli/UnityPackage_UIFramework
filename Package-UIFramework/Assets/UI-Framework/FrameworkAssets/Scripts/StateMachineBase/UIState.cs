@@ -6,23 +6,30 @@ namespace UIFramework.StateMachine
     public class UIState : MonoBehaviour
     {
         protected UIStateMachine owner;
+        private UIView uiView;
 
         /// <summary>
         /// Called when initialising the State Machine, much like the Start and Awake functions.
         /// </summary>
         /// <param name="owner"></param>
-        public virtual void PrepareState(UIStateMachine owner) { if (!this.owner) this.owner = owner; }
+        public virtual void PrepareState(UIStateMachine owner, UIView uiView = null)
+        {
+            if (!this.owner) this.owner = owner;
+            if (!this.uiView) this.uiView = uiView;
+        }
 
-        public virtual void ShowState() { }
-        public virtual void HideState() { }
+        public virtual void ShowState()
+        {
+            uiView.ShowView();
+        }
+
+        public virtual void HideState()
+        {
+            uiView.HideView();
+        }
 
         /// <summary>
-        /// Optional.
-        /// </summary>
-        public virtual void UpdateState() { }
-
-        /// <summary>
-        /// Safely load Scene.
+        /// Safely load Scene. TODO: Move this method outside UIState.
         /// </summary>
         /// <param name="index"></param>
         public virtual void LoadScene(int index)

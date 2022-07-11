@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UIFramework
 {
-    public class UIManager : Singleton<UIManager>
+    public class OptionsMenuManager : Singleton<OptionsMenuManager>
     {
         [Tooltip("Prefab for the game's Options Menu")]
         [SerializeField] private UIStateMachine optionsMenuPrefab = null;
@@ -35,7 +35,7 @@ namespace UIFramework
                 if (!optionsMenu)                                               
                 {
                     optionsMenu = Instantiate(optionsMenuPrefab);
-                    optionsMenu?.FirstStart();
+                    optionsMenu.FirstStart();
                 }
 
                 optionsMenu.ChangeState(optionsMenu.StartingType);

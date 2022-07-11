@@ -7,10 +7,8 @@ namespace UIFramework.StateMachine
 {
     public class UIStateMachine : MonoBehaviour
     {
-        [SerializeField]
-        private UIRoot root = null;
-        [SerializeField]
-        private UIState startingState = null;
+        [SerializeField] private UIRoot root = null;
+        [SerializeField] private UIState startingState = null;
 
         private UIState currentState;
         private List<UIState> states = new List<UIState>();
@@ -24,14 +22,6 @@ namespace UIFramework.StateMachine
         private void Start()
         {
             FirstStart();
-        }
-
-        private void Update()
-        {
-            if (currentState != null)
-            {
-                currentState.UpdateState();
-            }
         }
 
         /// <summary>
@@ -58,18 +48,18 @@ namespace UIFramework.StateMachine
             }
 
             UIState newState = null;
-            foreach(UIState state in states)
+            foreach (UIState state in states)
             {
-                if(stateType == state.GetType())
+                if (stateType == state.GetType())
                 {
                     newState = state;
                     break;
                 }
             }
 
-            currentState?.HideState();
+            if (currentState) currentState.HideState();
             currentState = newState;
-            currentState?.ShowState();
+            if (currentState) currentState.ShowState();
         }
     }
 }

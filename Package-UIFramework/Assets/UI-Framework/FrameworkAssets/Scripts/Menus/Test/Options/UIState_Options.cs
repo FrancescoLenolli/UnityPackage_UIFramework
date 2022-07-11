@@ -2,14 +2,15 @@
 
 namespace UIFramework.Test
 {
-    public class UIState_Test : UIState
+    public class UIState_Options : UIState
     {
-        protected UIRoot_Test root;
+        protected UIRoot_Options root;
+
         public override void PrepareState(UIStateMachine owner, UIView uiView)
         {
             base.PrepareState(owner, uiView);
             if (!root)
-                root = (UIRoot_Test)this.owner.Root;
+                root = (UIRoot_Options)owner.Root;
         }
     }
 }

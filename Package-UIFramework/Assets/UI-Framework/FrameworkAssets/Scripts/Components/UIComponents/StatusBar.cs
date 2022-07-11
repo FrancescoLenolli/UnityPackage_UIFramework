@@ -31,10 +31,8 @@ namespace UIFramework.Components
     /// </summary>
     public class StatusBar : UIComponent
     {
-        [SerializeField]
-        private CustomSlider slider = null;
-        [SerializeField]
-        private TextMeshProUGUI valueNameLabel = null;
+        [SerializeField] private CustomSlider slider = null;
+        [SerializeField] private TextMeshProUGUI valueNameLabel = null;
 
         public void Init(StatusInfo statusValues)
         {

@@ -4,19 +4,23 @@ using UnityEngine.EventSystems;
 
 namespace UIFramework
 {
-    class UIElements : EditorWindow
+    class UIFrameworkEditor : EditorWindow
     {
         private static GameObject[] gameObjects;
         private Transform parent;
         private GameObject eventSystem;
 
-        [MenuItem("UI Framework/UI Elements")]
+        [MenuItem("Tools/UI Framework")]
         public static void ShowWindow()
         {
-            GetWindow(typeof(UIElements));
+            GetWindow(typeof(UIFrameworkEditor));
             RefreshSelection();
         }
 
+        /// <summary>
+        /// Get again the list of Spawnable Elements in the
+        /// Resources folder, in case some were added.
+        /// </summary>
         private static void RefreshSelection()
         {
             GetObjects();
@@ -24,7 +28,7 @@ namespace UIFramework
 
         private static void GetObjects()
         {
-            gameObjects = Resources.LoadAll<GameObject>("SpawnableElements");
+            gameObjects = Resources.LoadAll<GameObject>("UIFrameworkElements");
         }
 
         private void OnGUI()
@@ -42,6 +46,10 @@ namespace UIFramework
             RefreshSelection();
         }
 
+        /// <summary>
+        /// Create a Button for every Spawnable Element responsible for
+        /// instantiating that Element when clicking on it.
+        /// </summary>
         private void DrawObjectsButton()
         {
             foreach (GameObject gameObject in gameObjects)
@@ -56,8 +64,15 @@ namespace UIFramework
             }
         }
 
+        /// <summary>
+        /// Instantiate the Element selected from the UIFramework Editor Window.
+        /// </summary>
         private void SpawnObject(GameObject gameObject)
         {
+            /*
+             * If no UI Element is selected in the Scene Hierarchy, the Element
+             * to Instantiate will be placed outside the UI, and it won't be visible.
+             */
             parent = Selection.activeTransform;
 
             if (!parent)
@@ -67,11 +82,19 @@ namespace UIFramework
 
             if (!eventSystem && GameObject.Find("EventSystem") == null)
             {
-                eventSystem = new GameObject();
-                eventSystem.name = "EventSystem";
-                eventSystem.AddComponent<EventSystem>();
-                eventSystem.AddComponent<StandaloneInputModule>();
+                CreateEventSystem();
             }
+        }
+
+        /// <summary>
+        /// An Event System needs to be active in Scene for the UI to work properly.
+        /// </summary>
+        private void CreateEventSystem()
+        {
+            eventSystem = new GameObject();
+            eventSystem.name = "EventSystem";
+            eventSystem.AddComponent<EventSystem>();
+            eventSystem.AddComponent<StandaloneInputModule>();
         }
     }
 }
