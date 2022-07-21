@@ -6,9 +6,9 @@ namespace UIFramework.Test
     {
         protected UIRoot_Options root;
 
-        public override void PrepareState(UIStateMachine owner, UIView uiView)
+        public override void PrepareState(UIStateMachine owner)
         {
-            base.PrepareState(owner, uiView);
+            base.PrepareState(owner);
             if (!root)
                 root = (UIRoot_Options)owner.Root;
         }

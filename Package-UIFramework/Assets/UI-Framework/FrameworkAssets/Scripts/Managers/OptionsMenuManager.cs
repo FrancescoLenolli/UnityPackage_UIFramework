@@ -46,7 +46,7 @@ namespace UIFramework
             {
                 if (optionsMenu)
                 {
-                    optionsMenu.CurrentState.HideState();
+                    optionsMenu.ActiveState.Hide();
                     Time.timeScale = 1;
                     optionsOpen = false;
                 }

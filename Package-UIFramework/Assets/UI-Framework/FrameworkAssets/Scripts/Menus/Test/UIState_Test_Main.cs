@@ -8,10 +8,11 @@ namespace UIFramework.Test
     {
         private UIView_Test_Main view;
 
-        public override void PrepareState(UIStateMachine owner, UIView uiView)
+        public override void PrepareState(UIStateMachine owner)
         {
-            view = root.MainView;
-            base.PrepareState(owner, view);
+            base.PrepareState(owner);
+            view = root.Main;
+            SetView(view);
 
             view.OnStartGame += StartGame;
             view.OnOpenOptions += OpenOptions;

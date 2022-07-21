@@ -8,10 +8,11 @@ namespace UIFramework.Test
     {
         private UIView_Options_Main view;
 
-        public override void PrepareState(UIStateMachine owner, UIView uiView)
+        public override void PrepareState(UIStateMachine owner)
         {
+            base.PrepareState(owner);
             view = root.ViewMain;
-            base.PrepareState(owner, view);
+            SetView(view);
 
             view.OnCloseOptions += CloseOptions;
         }
@@ -19,7 +20,7 @@ namespace UIFramework.Test
         private void CloseOptions()
         {
             Time.timeScale = 1;
-            HideState();
+            Hide();
             OptionsMenuManager.Instance.OptionsOpen = false;
         }
     }

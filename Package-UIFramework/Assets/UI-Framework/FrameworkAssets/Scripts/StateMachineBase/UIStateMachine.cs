@@ -10,13 +10,13 @@ namespace UIFramework.StateMachine
         [SerializeField] private UIRoot root = null;
         [SerializeField] private UIState startingState = null;
 
-        private UIState currentState;
-        private List<UIState> states = new List<UIState>();
+        private UIState activeState;
+        private List<UIState> states;
         private bool statesPrepared = false;
 
         public UIRoot Root { get => root; set => root = value; }
-        public UIState CurrentState { get => currentState; }
-        public Type CurrentType { get => currentState.GetType(); }
+        public UIState ActiveState { get => activeState; }
+        public Type ActiveType { get => activeState.GetType(); }
         public Type StartingType { get => startingState.GetType(); }
 
         private void Start()
@@ -39,7 +39,7 @@ namespace UIFramework.StateMachine
             ChangeState(startingState.GetType());
         }
 
-        public void ChangeState(Type stateType)
+        public void ChangeState(Type type)
         {
             if (!statesPrepared)
             {
@@ -50,16 +50,16 @@ namespace UIFramework.StateMachine
             UIState newState = null;
             foreach (UIState state in states)
             {
-                if (stateType == state.GetType())
+                if (type == state.GetType())
                 {
                     newState = state;
                     break;
                 }
             }
 
-            if (currentState) currentState.HideState();
-            currentState = newState;
-            if (currentState) currentState.ShowState();
+            if (activeState) activeState.Hide();
+            activeState = newState;
+            if (activeState) activeState.Show();
         }
     }
 }

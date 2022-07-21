@@ -38,7 +38,7 @@ namespace Localization
                 return;
 
             language = newLanguage;
-            EventManager.TriggerEvent("ChangedLanguage");
+            EventManager.Trigger("ChangedLanguage");
         }
 
         public static void Add(string key, string value)

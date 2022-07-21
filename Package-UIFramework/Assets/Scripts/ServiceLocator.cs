@@ -7,7 +7,7 @@ public static class ServiceLocator
 {
     private static Dictionary<Type, MonoBehaviour> services;
 
-    public static T GetService<T>() where T : MonoBehaviour, new()
+    public static T Get<T>() where T : MonoBehaviour, new()
     {
         if (services == null)
             services = new Dictionary<Type, MonoBehaviour>();

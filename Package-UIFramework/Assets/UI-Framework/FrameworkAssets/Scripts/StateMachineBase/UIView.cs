@@ -12,17 +12,17 @@ namespace UIFramework.StateMachine
         protected CanvasGroup canvasGroup;
         private bool showView = true;
 
-        public virtual void ShowView()
+        public virtual void Show()
         {
-            ChangeView(true);
+            SetVisibility(true);
         }
 
-        public virtual void HideView()
+        public virtual void Hide()
         {
-            ChangeView(false);
+            SetVisibility(false);
         }
 
-        protected CanvasGroup GetCanvasGroup()
+        private CanvasGroup GetCanvasGroup()
         {
             if (!canvasGroup)
                 canvasGroup = GetComponent<CanvasGroup>();
@@ -30,16 +30,16 @@ namespace UIFramework.StateMachine
             return canvasGroup;
         }
 
-        private void ChangeView(bool isVisible)
+        private void SetVisibility(bool isVisible)
         {
             UIUtils.ShowObject(GetCanvasGroup(), isVisible);
         }
 
-        [ContextMenu("Show|Hide View")]
-        private void ChangeView()
+        [ContextMenu("Change Visibility")]
+        private void ChangeVisibility()
         {
             showView = !showView;
-            ChangeView(showView);
+            SetVisibility(showView);
         }
     }
 }

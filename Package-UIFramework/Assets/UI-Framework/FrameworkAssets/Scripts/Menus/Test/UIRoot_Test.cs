@@ -7,6 +7,6 @@ namespace UIFramework.Test
     {
         [SerializeField] private UIView_Test_Main mainView = null;
 
-        public UIView_Test_Main MainView { get => mainView; private set => mainView = value; }
+        public UIView_Test_Main Main { get => mainView; private set => mainView = value; }
     }
 }
