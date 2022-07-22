@@ -6,7 +6,7 @@ namespace UIFramework.StateMachine
     public class UIState : MonoBehaviour
     {
         protected UIStateMachine owner;
-        private UIView view;
+        private UIView baseView;
 
         /// <summary>
         /// Called when initialising the State Machine, much like the Start and Awake functions.
@@ -19,17 +19,17 @@ namespace UIFramework.StateMachine
 
         public virtual void Show()
         {
-            view.Show();
+            baseView.Show();
         }
 
         public virtual void Hide()
         {
-            view.Hide();
+            baseView.Hide();
         }
 
         protected void SetView(UIView view)
         {
-            if (!this.view) this.view = view;
+            if (!this.baseView) this.baseView = view;
         }
 
         /// <summary>

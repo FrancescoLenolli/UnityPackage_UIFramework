@@ -29,6 +29,12 @@ namespace UIFramework.StateMachine
         /// </summary>
         public void FirstStart()
         {
+            if (startingState == null)
+            {
+                Debug.LogWarning("No Starting State selected!");
+                return;
+            }    
+
             if (!statesPrepared)
             {
                 states = GetComponents<UIState>().ToList();
