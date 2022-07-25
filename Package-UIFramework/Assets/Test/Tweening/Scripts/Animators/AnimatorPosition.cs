@@ -2,40 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorPosition : AnimatorBase
+public class AnimatorPosition : LerpVectorAnimator
 {
     [SerializeField] private Transform target = null;
+    [SerializeField] private Transform start = null;
     [SerializeField] private Transform end = null;
     [SerializeField] private float time = 1f;
 
-    private LerpVector lerp;
     private Vector3 startPosition;
     private Vector3 endPosition;
-    private bool canAnimate = true;
 
     public override void Init()
     {
         if (lerp == null)
         {
-            startPosition = target.position;
+            startPosition = start ? start.position : target.position;
             endPosition = end.position;
             lerp = new LerpVector(startPosition, endPosition);
         }
     }
 
-    public override void Animate()
+    public override void Animate(bool loop = false)
     {
-        Init();
-        canAnimate = true;
-
-        if (canAnimate)
+        if(!target || !end)
         {
-            if (lerp.IsComplete)
-            {
-                lerp.Reset();
-                lerp.Reverse();
-            }
-            StartCoroutine(PingPongRoutine(time));
+            Debug.Log($"Animator in {name} has no Target or End set!");
+            return;
+        }
+
+        if (loop)
+        {
+            StartAnimation(LoopRoutine(time));
+        }
+        else
+        {
+            StartAnimation(LerpRoutine(time));
         }
     }
 
@@ -53,7 +54,7 @@ public class AnimatorPosition : AnimatorBase
         canAnimate = true;
     }
 
-    private IEnumerator PingPongRoutine(float time)
+    private IEnumerator LoopRoutine(float time)
     {
         while(true)
         {
