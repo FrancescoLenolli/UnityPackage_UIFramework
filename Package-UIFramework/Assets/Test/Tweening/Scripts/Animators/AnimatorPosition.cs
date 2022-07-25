@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimatorPosition : LerpVectorAnimator
@@ -18,13 +17,13 @@ public class AnimatorPosition : LerpVectorAnimator
         {
             startPosition = start ? start.position : target.position;
             endPosition = end.position;
-            lerp = new LerpVector(startPosition, endPosition);
+            lerp = new LerpVector(startPosition, endPosition, true);
         }
     }
 
     public override void Animate(bool loop = false)
     {
-        if(!target || !end)
+        if (!target || !end)
         {
             Debug.Log($"Animator in {name} has no Target or End set!");
             return;
@@ -56,9 +55,9 @@ public class AnimatorPosition : LerpVectorAnimator
 
     private IEnumerator LoopRoutine(float time)
     {
-        while(true)
+        while (true)
         {
-            if(!lerp.Evaluate(Time.deltaTime, time, false))
+            if (!lerp.Evaluate(Time.deltaTime, time))
             {
                 target.position = lerp.Value;
             }

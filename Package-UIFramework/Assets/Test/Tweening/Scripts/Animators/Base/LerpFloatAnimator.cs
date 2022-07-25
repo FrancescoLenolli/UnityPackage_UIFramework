@@ -2,15 +2,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class LerpFloatAnimator : LerpAnimatorBase
+public abstract class LerpFloatAnimator : LerpAnimatorBase
 {
     protected LerpFloat lerp;
 
-    protected void StartAnimation(bool loop, float time, Action<float> action)
+    protected void StartAnimation(bool loop, float time, Action<float> action, bool reverse = true)
     {
         if (loop)
         {
-            StartAnimation(LoopRoutine(time, action));
+            StartAnimation(LoopRoutine(time, action, reverse));
         }
         else
         {
@@ -18,7 +18,7 @@ public class LerpFloatAnimator : LerpAnimatorBase
         }
     }
 
-    protected void StartAnimation(IEnumerator animation)
+    private void StartAnimation(IEnumerator animation)
     {
         Init();
 
@@ -33,7 +33,7 @@ public class LerpFloatAnimator : LerpAnimatorBase
         }
     }
 
-    protected IEnumerator LerpRoutine(float time, Action<float> action)
+    private IEnumerator LerpRoutine(float time, Action<float> action)
     {
         canAnimate = false;
 
@@ -47,7 +47,7 @@ public class LerpFloatAnimator : LerpAnimatorBase
         canAnimate = true;
     }
 
-    protected IEnumerator LoopRoutine(float time, Action<float> action)
+    private IEnumerator LoopRoutine(float time, Action<float> action, bool reverse)
     {
         while (true)
         {
@@ -59,7 +59,10 @@ public class LerpFloatAnimator : LerpAnimatorBase
             {
                 action(lerp.Value);
                 lerp.Reset();
-                lerp.Reverse();
+                if (reverse)
+                {
+                    lerp.Reverse();
+                }
             }
 
             yield return null;

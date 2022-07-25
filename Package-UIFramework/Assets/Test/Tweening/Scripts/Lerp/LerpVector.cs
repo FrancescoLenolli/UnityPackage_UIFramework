@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LerpVector : LerpBase
 {
@@ -10,16 +8,17 @@ public class LerpVector : LerpBase
 
     public Vector3 Value { get => value; }
 
-    public LerpVector(Vector3 start, Vector3 end)
+    public LerpVector(Vector3 start, Vector3 end, bool smooth)
     {
         this.start = start;
         this.end = end;
+        this.smooth = smooth;
     }
 
-    public override bool Evaluate(float timeStep, float totalTime, bool smoothStep = true)
+    public override bool Evaluate(float timeStep, float totalTime)
     {
         Vector3 newValue = value;
-        float step = smoothStep ?
+        float step = smooth ?
             Mathf.SmoothStep(0.0f, 1.0f, time / totalTime) :
             time / totalTime;
 

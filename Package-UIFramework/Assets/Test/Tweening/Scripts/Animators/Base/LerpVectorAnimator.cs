@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class LerpVectorAnimator : LerpAnimatorBase
+public abstract class LerpVectorAnimator : LerpAnimatorBase
 {
     protected LerpVector lerp;
 
