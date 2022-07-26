@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Tween.Animators.Base;
+using Tween.Extensions;
 using UnityEngine;
 
 namespace Tween.Animators
 {
     public class AnimatorGroup : MonoBehaviour
     {
-        public Transform parent = null;
-        public bool playOnStart = false;
-        public bool loop = false;
+        [SerializeField] private Transform parent = null;
+        [SerializeField] private bool playOnStart = false;
+        [SerializeField] private bool loop = false;
 
         private void Start()
         {
@@ -29,15 +29,10 @@ namespace Tween.Animators
             List<LerpAnimatorBase> animators = new List<LerpAnimatorBase>();
             animators.AddRange(GetComponents<LerpAnimatorBase>());
 
-            foreach (Transform transform in parent)
-            {
-                animators.AddRange(transform.GetComponents<LerpAnimatorBase>());
-            }
+            parent.ForEach(child =>
+            animators.AddRange(child.GetComponents<LerpAnimatorBase>()));
 
-            foreach (LerpAnimatorBase animator in animators)
-            {
-                animator.Animate(true);
-            }
+            animators.ForEach(animator => animator.Animate(loop));
         }
     }
 }

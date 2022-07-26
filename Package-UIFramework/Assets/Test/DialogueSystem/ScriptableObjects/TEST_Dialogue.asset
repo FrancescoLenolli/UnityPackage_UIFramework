@@ -15,7 +15,7 @@ MonoBehaviour:
   sections:
   - characterName: Pino
     status: 0
-    text: MhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanzMhanz
+    text: MhanzMhanzMhanzMhanzMhanzMhanzMhanz
   - characterName: Pito
     status: 0
     text: Lorem Ipsum
@@ -24,4 +24,4 @@ MonoBehaviour:
     text: NanniTwitch
   - characterName: Pipo
     status: 0
-    text: I have to say something
+    text: Er Dadone

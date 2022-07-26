@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,14 @@ namespace Tween.Extensions
                     break;
                 default:
                     break;
+            }
+        }
+
+        public static void ForEach(this Transform transform, Action<Transform> action)
+        {
+            foreach(Transform child in transform)
+            {
+                action?.Invoke(child);
             }
         }
     }

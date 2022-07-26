@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private bool debug = false;
-    [SerializeField] private Dialogue debugDialogue = null;
+    [SerializeField] private bool playOnStart = false;
+    [SerializeField] private Dialogue dialogue = null;
     [Space(10)]
     [SerializeField] private GameObject dialogueCanvas = null;
     [Tooltip("Text for the dialogue texts.")]
@@ -39,8 +39,8 @@ public class DialogueSystem : MonoBehaviour
 
     private void Start()
     {
-        if(debug)
-        SetDialogue(debugDialogue);
+        if(playOnStart)
+        SetDialogue(dialogue);
     }
 
     public void SetDialogue(Dialogue newDialogue)
