@@ -8,11 +8,6 @@ namespace Lerp.Base
     {
         protected float time;
         protected bool isComplete;
-        /*
-         * TRUE: Lerp value will ease in and out.
-         * FALSE: Lerp value will be linear from start to finish.
-         */
-        protected bool smooth;
 
         /// <summary>
         /// Returns TRUE if the Lerp operation is complete (t = 1).

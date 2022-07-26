@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace Lerp
 {
+    /// <summary>
+    /// Lerp between two floating point values.
+    /// The overwhelming majority of lerp operations
+    /// can be by using this Class.
+    /// </summary>
     public class LerpFloat : LerpBase
     {
         private float start;
@@ -11,19 +16,21 @@ namespace Lerp
 
         public float Value { get => value; }
 
-        public LerpFloat(float start, float end, bool smooth = true)
+        /// <summary>
+        /// Get Base Lerp with start = 0, end = 1.
+        /// </summary>
+        public static LerpFloat Basic { get => new LerpFloat(0, 1); }
+
+        public LerpFloat(float start, float end)
         {
             this.start = start;
             this.end = end;
-            this.smooth = smooth;
         }
 
         public override bool Evaluate(float timeStep, float totalTime)
         {
             float newValue = value;
-            float step = smooth ?
-                Mathf.SmoothStep(0.0f, 1.0f, time / totalTime) :
-                time / totalTime;
+            float step = time / totalTime;
 
             if (time <= totalTime)
             {

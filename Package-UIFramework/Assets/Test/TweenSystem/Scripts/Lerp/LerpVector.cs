@@ -15,15 +15,12 @@ namespace Lerp
         {
             this.start = start;
             this.end = end;
-            this.smooth = smooth;
         }
 
         public override bool Evaluate(float timeStep, float totalTime)
         {
             Vector3 newValue = value;
-            float step = smooth ?
-                Mathf.SmoothStep(0.0f, 1.0f, time / totalTime) :
-                time / totalTime;
+            float step = time / totalTime;
 
             if (time <= totalTime)
             {

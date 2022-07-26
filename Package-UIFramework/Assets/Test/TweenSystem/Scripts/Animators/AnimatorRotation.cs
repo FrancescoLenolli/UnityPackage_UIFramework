@@ -12,12 +12,13 @@ namespace Tween.Animators
         [SerializeField] private Axis rotationAxis = Axis.X;
         [SerializeField] private float time = 1f;
         [SerializeField] private Transform target = null;
+        [SerializeField] private AnimationCurve animationCurve = null;
 
         public override void Init()
         {
             if (lerp == null)
             {
-                lerp = new LerpFloat(startValue, endValue, false);
+                lerp = LerpFloat.Basic;
                 if (!target)
                 {
                     target = transform;
@@ -32,7 +33,7 @@ namespace Tween.Animators
 
         private void SetRotation(float value)
         {
-            target.SetSingleAngle(rotationAxis, value);
+            target.SetSingleAngle(rotationAxis, animationCurve.Evaluate(value) * endValue);
         }
     }
 }

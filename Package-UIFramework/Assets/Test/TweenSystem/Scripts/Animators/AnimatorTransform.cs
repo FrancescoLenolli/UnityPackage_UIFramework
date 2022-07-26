@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Tween.Animators
 {
-    public class AnimatorPosition : LerpVectorAnimator
+    public class AnimatorTransform : LerpVectorAnimator
     {
         [SerializeField] private Transform target = null;
         [SerializeField] private Transform start = null;
