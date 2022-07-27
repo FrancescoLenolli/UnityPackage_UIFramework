@@ -23,8 +23,6 @@ namespace Tween.Animators.Base
 
         private void StartAnimation(IEnumerator animation)
         {
-            Init();
-
             if (canAnimate)
             {
                 if (lerp.IsComplete)

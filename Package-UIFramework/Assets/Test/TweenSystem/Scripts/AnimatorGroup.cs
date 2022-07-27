@@ -32,7 +32,8 @@ namespace Tween.Animators
             parent.ForEach(child =>
             animators.AddRange(child.GetComponents<LerpAnimatorBase>()));
 
-            animators.ForEach(animator => animator.Animate(loop));
+            animators.ForEach(animator =>
+            { animator.Init(); animator.Animate(loop); });
         }
     }
 }
