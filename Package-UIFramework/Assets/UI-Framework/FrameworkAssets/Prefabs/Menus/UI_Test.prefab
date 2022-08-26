@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1124650108484937222}
   - component: {fileID: 5127000625558322007}
-  - component: {fileID: 1124650108484937224}
+  - component: {fileID: 1040981356}
   - component: {fileID: 1124650108484937223}
   m_Layer: 0
-  m_Name: UI_TestMenu
+  m_Name: UI_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d9031aa8fce6a479e185b2a2506270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 1124650108484937224}
+  root: {fileID: 1040981356}
   startingState: {fileID: 1124650108484937223}
---- !u!114 &1124650108484937224
+--- !u!114 &1040981356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,10 +57,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1124650108484937221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a71d03d72082041a36a0c7e9668193, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d43c57a7a6f2a84b926736c34694f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainView: {fileID: 1040981354}
+  views:
+  - {fileID: 1040981354}
 --- !u!114 &1124650108484937223
 MonoBehaviour:
   m_ObjectHideFlags: 0
