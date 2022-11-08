@@ -7,10 +7,10 @@ namespace UIFramework.StateMachine
     /// Holds logic for the UIView visual elements.
     /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
-    public class UIView : MonoBehaviour
+    public abstract class UIView : MonoBehaviour
     {
         protected CanvasGroup canvasGroup;
-        private bool showView = true;
+        private bool isVisible = true;
 
         public virtual void Show()
         {
@@ -32,14 +32,14 @@ namespace UIFramework.StateMachine
 
         private void SetVisibility(bool isVisible)
         {
+            this.isVisible = isVisible;
             UIUtils.ShowObject(GetCanvasGroup(), isVisible);
         }
 
         [ContextMenu("Change Visibility")]
         private void ChangeVisibility()
         {
-            showView = !showView;
-            SetVisibility(showView);
+            SetVisibility(!isVisible);
         }
     }
 }

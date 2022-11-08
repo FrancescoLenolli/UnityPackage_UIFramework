@@ -23,7 +23,7 @@ namespace UIFramework.Utilities
             UnityEngine.Assertions.Assert.IsTrue(services.ContainsKey
                 (typeof(T)), $"Could not find service {typeof(T)}.");
 
-            var service = (T)services[typeof(T)];
+            T service = (T)services[typeof(T)];
 
             UnityEngine.Assertions.Assert.IsNotNull(service,
                 $"Service '{typeof(T)}' in Scene '" +
@@ -31,5 +31,7 @@ namespace UIFramework.Utilities
 
             return service;
         }
+
+        public static bool operator !(ServiceLocator serviceLocator) { return serviceLocator == null; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using UIFramework;
-using UIFramework.StateMachine;
+﻿using UIFramework.StateMachine;
+using UIFramework.Utilities;
 using UnityEngine;
 
 namespace UIFramework.Test
@@ -11,27 +11,17 @@ namespace UIFramework.Test
         public override void PrepareState(UIStateMachine owner)
         {
             base.PrepareState(owner);
-            view = owner.Root.Get<UIView_Test_Main>();
+            view = owner.Root.GetView<UIView_Test_Main>();
             SetView(view);
 
-            view.OnStartGame += StartGame;
+            view.OnStartGame += () => SceneLoader.LoadScene(1);
+            view.OnQuitGame += Application.Quit;
             view.OnOpenOptions += OpenOptions;
-            view.OnQuitGame += QuitGame;
-        }
-
-        private void StartGame()
-        {
-            LoadScene(1);
         }
 
         private void OpenOptions()
         {
             Debug.Log("Opening Options");
-        }
-
-        private void QuitGame()
-        {
-            Application.Quit();
         }
     }
 }

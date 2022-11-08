@@ -1,6 +1,6 @@
 ﻿using System;
-using UnityEngine;
 using UIFramework.Utilities;
+using UnityEngine;
 
 namespace UIFramework.StateMachine
 {
@@ -9,40 +9,34 @@ namespace UIFramework.StateMachine
     /// </summary>
     public class UIRoot : MonoBehaviour
     {
-        [SerializeField] private UIView[] views = new UIView[0];
-        private ServiceLocator serviceLocator = new ServiceLocator();
+        private UIView[] views;
+        private ServiceLocator serviceLocator;
 
         /// <summary>
         /// Get a UIView of the specified Type from the current UI.
         /// </summary>
         /// <returns></returns>
-        public T Get<T>() where T : UIView
+        public T GetView<T>() where T : UIView
         {
-            // Store the type for better debugging. Without it the type of T wouldn't be visible.
-            Type type = typeof(T);
-            T result = null;
-
             // Make sure views has a reference to every UIView.
-            if (views.Length == 0)
-            {
+            if (views == null)
                 views = GetComponentsInChildren<UIView>();
-            }
 
-            foreach (UIView view in views)
+            // Store the type for better debugging. Without it the type of T wouldn't be visible.
+            T result = null;
+            Type type = typeof(T);
+
+            for (int i = 0; i < views.Length; ++i)
             {
-                if (view.GetType() == type)
+                if (views[i].GetType() == type)
                 {
-                    result = (T)view;
+                    result = (T)views[i];
                     break;
                 }
             }
 
             if (result == null)
-            {
-                Debug.LogError($"View of type {type.Name} not found!" +
-                    $"Make sure the UIRoot component has a reference to every View" +
-                    $"and that the Views needed are in the Scene.");
-            }
+                Debug.LogError($"View of type {type.Name} not found!");
 
             return result;
         }
@@ -52,6 +46,9 @@ namespace UIFramework.StateMachine
         /// </summary>
         public T GetService<T>() where T : MonoBehaviour, new()
         {
+            if (!serviceLocator)
+                serviceLocator = new ServiceLocator();
+
             return serviceLocator.Get<T>();
         }
     }

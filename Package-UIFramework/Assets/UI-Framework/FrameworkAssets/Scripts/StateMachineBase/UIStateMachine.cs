@@ -8,8 +8,8 @@ namespace UIFramework.StateMachine
     public class UIStateMachine : MonoBehaviour
     {
         [SerializeField] private UIRoot root = null;
-        [SerializeField] private UIState startingState = null;
 
+        private UIState startingState;
         private UIState activeState;
         private List<UIState> states;
         private bool statesPrepared = false;
@@ -19,28 +19,18 @@ namespace UIFramework.StateMachine
         public Type ActiveType { get => activeState.GetType(); }
         public Type StartingType { get => startingState.GetType(); }
 
-        private void Start()
-        {
-            FirstStart();
-        }
-
         /// <summary>
         /// Initialise the Machine's States starting values.
         /// </summary>
-        public void FirstStart()
+        public void Init(UIState firstState)
         {
-            if (startingState == null)
-            {
-                Debug.LogWarning("No Starting State selected!");
+            if (statesPrepared)
                 return;
-            }    
 
-            if (!statesPrepared)
-            {
-                states = GetComponents<UIState>().ToList();
-                states.ForEach(state => state.PrepareState(this));
-                statesPrepared = true;
-            }
+            startingState = firstState;
+            states = GetComponents<UIState>().ToList();
+            states.ForEach(state => state.PrepareState(this));
+            statesPrepared = true;
 
             ChangeState(startingState.GetType());
         }
@@ -54,18 +44,11 @@ namespace UIFramework.StateMachine
             }
 
             UIState newState = null;
-            foreach (UIState state in states)
-            {
-                if (type == state.GetType())
-                {
-                    newState = state;
-                    break;
-                }
-            }
+            newState = states.Find(state => state.GetType() == type);
 
-            if (activeState) activeState.Hide();
+            activeState?.Hide();
             activeState = newState;
-            if (activeState) activeState.Show();
+            activeState?.Show();
         }
     }
 }
